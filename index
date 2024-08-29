@@ -1,0 +1,30 @@
+<script>
+function uploadFile() {
+    const fileInput = document.getElementById('file');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert('请选择文件！');
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const base64 = event.target.result.split(',')[1];
+        
+        fetch('你的云函数HTTP触发URL', {  // 替换此处
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'file-name': file.name
+            },
+            body: base64
+        })
+        .then(response => response.json())
+        .then(data => alert(data.message))
+        .catch(error => console.error('上传失败:', error));
+    };
+    
+    reader.readAsDataURL(file);
+}
+</script>

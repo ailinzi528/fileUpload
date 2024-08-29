@@ -27,7 +27,7 @@
         reader.onload = function(event) {
             const base64 = event.target.result.split(',')[1];
 
-            fetch('你的云函数 HTTP 触发 URL', {  // 替换此处
+            fetch('https://amass-9gvtlutj5e9b4131-1329097434.ap-shanghai.app.tcloudbase.com/', {  // 替换此处
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
